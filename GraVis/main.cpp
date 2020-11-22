@@ -23,7 +23,7 @@
 
 #include "implot/implot.h"
 
-
+void resize_callback(GLFWwindow* window, int width, int height);
 
 int main(void)
 {
@@ -64,7 +64,7 @@ int main(void)
     printf("Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
 
-
+    glfwSetWindowSizeCallback(window, resize_callback);
 
 
 
@@ -130,6 +130,9 @@ int main(void)
         //ImPlot::ShowDemoWindow(&show_demo_window);
 
         ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_Once | ImGuiCond_Appearing);
+
+        ImGui::Begin("Test", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoMove);
+
         double DEMO_TIME = ImGui::GetTime();
         //if (ImGui::CollapsingHeader("Line Plots")) {
             static float xs1[1001], ys1[1001];
@@ -142,7 +145,6 @@ int main(void)
                 xs2[i] = i * 0.1f;
                 ys2[i] = xs2[i] * xs2[i];
             }
-            ImGui::BulletText("Anti-aliasing can be enabled from the plot's context menu (see Help).");
             if (ImPlot::BeginPlot("Line Plot", "x", "f(x)")) {
                 ImPlot::PlotLine("sin(x)", xs1, ys1, 1001);
                 ImPlot::SetNextMarkerStyle(ImPlotMarker_Circle);
@@ -150,6 +152,8 @@ int main(void)
                 ImPlot::EndPlot();
             }
         //}
+
+            ImGui::End();
 
         //ImGui::ShowDemoWindow(&show_demo_window);
 
@@ -227,4 +231,9 @@ int main(void)
 
     glfwTerminate();
     return 0;
+}
+
+void resize_callback(GLFWwindow* window, int width, int height)
+{
+
 }
