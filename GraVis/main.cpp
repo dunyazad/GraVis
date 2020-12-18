@@ -2,10 +2,10 @@
 #include <locale.h>
 #include <math.h>
 
-#include <winsock2.h> // 윈속 헤더 포함 
+#include <winsock2.h>
 #include <windows.h> 
-#pragma comment (lib,"ws2_32.lib") // 윈속 라이브러리 링크
-#define BUFFER_SIZE 1024 // 버퍼 사이즈
+#pragma comment (lib,"ws2_32.lib")
+#define BUFFER_SIZE 1024
 
 #include <map>
 #include <string>
@@ -92,9 +92,6 @@ struct RollingBuffer {
 
 map<string, RollingBuffer> buffers;
 bool bPaused = false;
-
-//ScrollingBuffer sdata1;
-//RollingBuffer   rdata1;
 
 void resize_callback(GLFWwindow* window, int width, int height);
 
